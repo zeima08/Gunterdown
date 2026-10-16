@@ -992,8 +992,7 @@ class Application:
             self.view("À propos", f"Gunterdown {__version__}\n" + self.t("Par Zeima · Licence MIT") + "\n\n" +
                       "\n".join(self.t(line) for line in (
                           "Éditeur Markdown en Python standard / curses.",
-                          "Dictionnaires FrequencyWords FR/EN/JA/ZH/KO · CC BY-SA 4.0.",
-                          "Context/ contient le cahier des charges initial.")))
+                          "Dictionnaires FrequencyWords FR/EN/JA/ZH/KO · CC BY-SA 4.0.")))
         elif action == "diagnostics":
             self.view("Diagnostics", diagnostics(self.settings, self.engine, self.tree.root.path))
         self.refresh_completion()

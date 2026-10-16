@@ -9,6 +9,3 @@ Construction hors ligne : `make build` ; installation wheel :
 
 Pandoc, XeLaTeX et Aspell sont facultatifs et ne sont pas installés par les
 scripts. Les cinq dictionnaires FrequencyWords sont embarqués pour fonctionner hors ligne.
-
-`Context/INSTALL.md` est la spécification initiale ; plusieurs chemins,
-volumes de dictionnaires et canaux de distribution y sont prospectifs.

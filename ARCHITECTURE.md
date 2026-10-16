@@ -40,7 +40,6 @@ Le rendu prend en compte les cellules doubles CJK, les accents combinés et
 l'expansion des tabulations. Le modèle conserve des positions en points de
 code. Les clusters emoji complexes ne sont pas segmentés.
 
-Les documents de `Context/` restent la référence des ambitions initiales.
 Les différences et fonctions différées figurent dans README.md et CHANGES.md.
 
 `themes.py` contient les sept palettes et la conversion xterm vers ANSI.

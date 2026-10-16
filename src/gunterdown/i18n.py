@@ -180,7 +180,6 @@ CATALOG = {
     "Par Zeima · Licence MIT": ("By Zeima · MIT License", "作者 Zeima · MIT ライセンス", "作者 Zeima · MIT 许可", "제작 Zeima · MIT 라이선스"),
     "Éditeur Markdown en Python standard / curses.": ("Markdown editor using Python / curses.", "Python / curses による Markdown エディター。", "基于 Python / curses 的 Markdown 编辑器。", "Python / curses 기반 Markdown 편집기."),
     "Dictionnaires FrequencyWords FR/EN/JA/ZH/KO · CC BY-SA 4.0.": ("FrequencyWords dictionaries FR/EN/JA/ZH/KO · CC BY-SA 4.0.", "FrequencyWords 辞書 FR/EN/JA/ZH/KO · CC BY-SA 4.0。", "FrequencyWords 词典 FR/EN/JA/ZH/KO · CC BY-SA 4.0。", "FrequencyWords 사전 FR/EN/JA/ZH/KO · CC BY-SA 4.0."),
-    "Context/ contient le cahier des charges initial.": ("Context/ contains the original specification.", "Context/ に元の仕様書があります。", "原始规格说明位于 Context/。", "원래 사양서는 Context/에 있습니다."),
     "Tab : suggestion / arborescence\nShift+flèches : sélection\nAlt+B : changer de buffer": ("Tab: suggestion / file tree\nShift+arrows: selection\nAlt+B: switch buffer", "Tab: 候補 / ツリー\nShift+矢印: 選択\nAlt+B: 文書切り替え", "Tab: 建议 / 文件树\nShift+方向键: 选择\nAlt+B: 切换文档", "Tab: 제안 / 파일 트리\nShift+방향키: 선택\nAlt+B: 문서 전환"),
 }
 ALIASES = {"save": "Enregistrer", "quit": "Quitter", "help": "Aide",

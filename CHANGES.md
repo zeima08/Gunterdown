@@ -53,7 +53,7 @@
 
 ## 0.7.0 — 2026-10-16
 
-Première implémentation exécutable à partir du cahier des charges `Context/`.
+Première version exécutable de Gunterdown.
 
 - Édition Unicode, sélection continue, historique différentiel plafonné à
   1000 opérations, indentation, navigation, presse-papiers interne.

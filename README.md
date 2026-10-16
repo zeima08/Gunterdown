@@ -55,11 +55,11 @@ Aucun paquet Python supplémentaire n’est nécessaire.
 
 Avant la création du fichier de configuration, un menu propose trois entrées :
 
-| Choix | Comportement |
-| --- | --- |
-| **Configurer** | Choisir la langue de l’interface, la langue du document et du dictionnaire, puis le comportement des modèles d’article. |
-| **Configuration rapide** | Enregistrer les réglages par défaut et continuer. |
-| **Lancer directement** | Ouvrir l’éditeur et configurer plus tard, sans demande d’insertion de modèle. |
+| Choix                    | Comportement                                                                                                            |
+| ------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
+| **Configurer**           | Choisir la langue de l’interface, la langue du document et du dictionnaire, puis le comportement des modèles d’article. |
+| **Configuration rapide** | Enregistrer les réglages par défaut et continuer.                                                                       |
+| **Lancer directement**   | Ouvrir l’éditeur et configurer plus tard, sans demande d’insertion de modèle.                                           |
 
 Utilisez **↑ / ↓**, puis **Entrée** pour choisir. **Échap** permet aussi de
 lancer directement. Le parcours reste accessible dans
@@ -69,19 +69,19 @@ l’éditeur directement. L’option `--new` conserve sa demande explicite de mo
 
 ### Les touches essentielles
 
-| Action | Raccourci |
-| --- | --- |
-| Enregistrer | `Ctrl+S` |
-| Quitter | `Ctrl+X` |
-| Ouvrir les menus | `F2` |
-| Lire le manuel | `F1` |
-| Ouvrir un fichier | `Ctrl+O` |
-| Changer de buffer | `Alt+B` |
-| Rechercher | `Ctrl+W` |
-| Insérer un modèle d’article | `Alt+T` |
-| Choisir la langue de rédaction | `Alt+L` |
-| Choisir la langue de l’interface | `Alt+U` |
-| Changer de thème | `Alt+Y` |
+| Action                           | Raccourci |
+| -------------------------------- | --------- |
+| Enregistrer                      | `Ctrl+S`  |
+| Quitter                          | `Ctrl+X`  |
+| Ouvrir les menus                 | `F2`      |
+| Lire le manuel                   | `F1`      |
+| Ouvrir un fichier                | `Ctrl+O`  |
+| Changer de buffer                | `Alt+B`   |
+| Rechercher                       | `Ctrl+W`  |
+| Insérer un modèle d’article      | `Alt+T`   |
+| Choisir la langue de rédaction   | `Alt+L`   |
+| Choisir la langue de l’interface | `Alt+U`   |
+| Changer de thème                 | `Alt+Y`   |
 
 Tous les raccourcis sont décrits dans le [manuel d’utilisation](USAGE.md),
 également accessible avec `F1` ; `Alt+H` affiche leur liste.
@@ -138,11 +138,11 @@ PyPI, AUR ou Homebrew.
 
 ### Outils facultatifs
 
-| Outil | Fonction |
-| --- | --- |
-| Pandoc | Export EPUB et import de fichiers org/rst, notamment. |
-| Pandoc et XeLaTeX | Export PDF. |
-| Aspell | Liste des mots inconnus en français et en anglais. |
+| Outil             | Fonction                                              |
+| ----------------- | ----------------------------------------------------- |
+| Pandoc            | Export EPUB et import de fichiers org/rst, notamment. |
+| Pandoc et XeLaTeX | Export PDF.                                           |
+| Aspell            | Liste des mots inconnus en français et en anglais.    |
 
 Ces outils ne sont pas installés par les scripts. L’édition, l’autocomplétion
 et l’export HTML intégré fonctionnent sans eux.
@@ -209,14 +209,14 @@ papier, Solarized sombre, Nord boréal, Dracula violet, océan bleu et contraste
 Les palettes s’adaptent aux terminaux 256, 16 ou 8 couleurs. Les thèmes
 personnalisés se placent dans `~/.config/gunterdown/themes/`.
 
-| Réglage | Utilité |
-| --- | --- |
-| `ui.language` | Langue de l’interface : `fr`, `en`, `ja`, `zh` ou `ko`. |
-| `editor.default_lang` | Langue de repli pour la détection automatique. |
+| Réglage                     | Utilité                                                                        |
+| --------------------------- | ------------------------------------------------------------------------------ |
+| `ui.language`               | Langue de l’interface : `fr`, `en`, `ja`, `zh` ou `ko`.                        |
+| `editor.default_lang`       | Langue de repli pour la détection automatique.                                 |
 | `editor.auto_save_interval` | Intervalle d’enregistrement automatique ; `0` le désactive, valeur par défaut. |
-| `template.auto_insert` | Insertion du modèle : `ask`, `always` ou `never`. |
-| `template.path` | Chemin d’un modèle d’article personnalisé. |
-| `template.author` | Auteur utilisé dans les modèles. |
+| `template.auto_insert`      | Insertion du modèle : `ask`, `always` ou `never`.                              |
+| `template.path`             | Chemin d’un modèle d’article personnalisé.                                     |
+| `template.author`           | Auteur utilisé dans les modèles.                                               |
 
 `GUNTERDOWN_HOME` change le répertoire de configuration, des logs et de
 récupération. `GUNTERDOWN_LANG` définit la langue d’autocomplétion au démarrage ;
@@ -235,8 +235,8 @@ abandon explicite ou après 30 jours.
 Les cinq dictionnaires embarqués contiennent **225 615 entrées** :
 
 | Français | Anglais | Japonais | Chinois | Coréen |
-| --- | --- | --- | --- | --- |
-| 49 418 | 48 635 | 33 151 | 45 567 | 48 844 |
+| -------- | ------- | -------- | ------- | ------ |
+| 49 418   | 48 635  | 33 151   | 45 567  | 48 844 |
 
 Ils proviennent de FrequencyWords, de Hermit Dave, corpus OpenSubtitles 2018,
 avec un complément de vocabulaire original. Leur provenance, leur révision
@@ -287,7 +287,3 @@ et la sélection rectangulaire ne sont pas implémentés. Les accents combinés
 ordinaires et la largeur CJK sont pris en charge ; les séquences emoji
 complexes ne bénéficient pas d’une segmentation complète en graphèmes.
 Les messages des outils externes restent dans leur langue d’origine.
-
-Le dossier `Context/` conserve les documents de conception initiaux, dont
-certaines fonctionnalités sont prospectives. Le manuel décrit le comportement
-livré. Aucun seuil de couverture des tests n’est actuellement imposé en CI.
