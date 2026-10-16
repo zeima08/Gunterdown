@@ -1,259 +1,293 @@
-# Gunterdown
+<p align="center">
+  <img src="gunterdown.png" alt="Logo Gunterdown" width="280">
+</p>
 
-Éditeur Markdown en terminal, écrit en Python standard avec `curses`.
-Conçu par Zeima pour rédiger des articles en français, anglais et CJK.
+<h1 align="center">Gunterdown</h1>
 
-## Démarrer
+<p align="center">
+  Un éditeur Markdown multilingue, directement dans votre terminal.<br>
+  Écrit en Python, utilisable hors ligne, sans dépendance Python externe.
+</p>
 
-Python 3.9+ et un terminal UTF-8 sous Linux, macOS, BSD ou WSL :
+<p align="center">
+  <a href="#démarrage-rapide">Démarrer</a> ·
+  <a href="#installation">Installer</a> ·
+  <a href="USAGE.md">Manuel</a> ·
+  <a href="CONTRIBUER.md">Contribuer</a>
+</p>
+
+## Écrire sans quitter le terminal
+
+Conçu par Zeima pour rédiger des articles, Gunterdown réunit l’édition Markdown,
+les modèles d’article et l’autocomplétion en **français, anglais, japonais,
+chinois simplifié et coréen**. L’interface et le manuel intégré sont également
+proposés dans ces cinq langues.
+
+- **Édition** : coloration Markdown, annuler/rétablir, sélection avec
+  Shift+flèches, presse-papiers interne, indentation et retour à la ligne visuel.
+- **Documents** : arborescence, plusieurs buffers, fichiers récents, recherche
+  et remplacement avec expressions régulières, recherche dans les fichiers.
+- **Articles** : modèles avec front-matter, sommaire, structures Markdown et
+  vérification des liens internes et des blocs ouverts.
+- **Aide à la rédaction** : dictionnaires embarqués, détection de langue par
+  paragraphe et suggestions près du curseur.
+- **Personnalisation** : sept thèmes, langue d’interface indépendante de la
+  langue de rédaction et raccourcis configurables.
+- **Enregistrement** : sauvegarde atomique et récupération après incident.
+- **Export** : HTML autonome intégré ; EPUB et PDF avec des outils facultatifs.
+
+## Démarrage rapide
+
+Il vous faut **Python 3.9 ou plus récent avec `curses`**, ainsi qu’un terminal
+**UTF-8**, sous Linux, macOS, BSD ou WSL.
+
+Depuis le dépôt :
 
 ```sh
+./gunterdown
 ./gunterdown mon_article.md
-# ou
-python3 bin/gunterdown.py mon_article.md
 ```
 
-Aucun paquet Python n'est nécessaire pour exécuter l'application ou ses tests.
-`Ctrl+S` enregistre, `Ctrl+X` quitte, `F1` ouvre le manuel, `F2` les menus.
-Au premier document vierge, choisissez si vous souhaitez insérer un template.
-Les fichiers ne sont écrits qu'à l'enregistrement.
+Autre lanceur disponible : `python3 bin/gunterdown.py mon_article.md`.
+Aucun paquet Python supplémentaire n’est nécessaire.
+
+### Un premier lancement à votre rythme
+
+Avant la création du fichier de configuration, un menu propose trois entrées :
+
+| Choix | Comportement |
+| --- | --- |
+| **Configurer** | Choisir la langue de l’interface, la langue du document et du dictionnaire, puis le comportement des modèles d’article. |
+| **Configuration rapide** | Enregistrer les réglages par défaut et continuer. |
+| **Lancer directement** | Ouvrir l’éditeur et configurer plus tard, sans demande d’insertion de modèle. |
+
+Utilisez **↑ / ↓**, puis **Entrée** pour choisir. **Échap** permet aussi de
+lancer directement. Le parcours reste accessible dans
+**F2 → Outils → Préférences → Configurer**.
+Une fois la configuration enregistrée, les lancements suivants ouvrent
+l’éditeur directement. L’option `--new` conserve sa demande explicite de modèle.
+
+### Les touches essentielles
+
+| Action | Raccourci |
+| --- | --- |
+| Enregistrer | `Ctrl+S` |
+| Quitter | `Ctrl+X` |
+| Ouvrir les menus | `F2` |
+| Lire le manuel | `F1` |
+| Ouvrir un fichier | `Ctrl+O` |
+| Changer de buffer | `Alt+B` |
+| Rechercher | `Ctrl+W` |
+| Insérer un modèle d’article | `Alt+T` |
+| Choisir la langue de rédaction | `Alt+L` |
+| Choisir la langue de l’interface | `Alt+U` |
+| Changer de thème | `Alt+Y` |
+
+Tous les raccourcis sont décrits dans le [manuel d’utilisation](USAGE.md),
+également accessible avec `F1` ; `Alt+H` affiche leur liste.
+
+## Installation
+
+### Installer la commande
 
 ```sh
-./gunterdown --new article.md
-./gunterdown --lang ja article.md
-./gunterdown --no-lang ja,zh,ko --no-color article.md
-./gunterdown --diagnostics
+./install.sh
 ```
 
-## Fonctionnalités livrées
+Le script installe `gunterdown` dans `~/.local/bin` et ses ressources dans
+`~/.local/share/gunterdown`. Ajoutez `~/.local/bin` à votre `PATH` si nécessaire.
+L’installation est isolée et le script refuse une installation déjà présente.
 
-- Édition Unicode, undo/redo, sélection continue avec Shift+flèches,
-  copier/coller interne, indentation et retour à la ligne visuel.
-- Menus clavier, arborescence, filtres regex, tri et opérations fichier.
-- Buffers multiples accessibles avec `Alt+B`, protection des modifications,
-  fichiers récents, sauvegarde atomique et récupération après incident.
-- Coloration Markdown, templates d'article avec front-matter, sommaire,
-  insertion de structures et vérification de liens internes/blocs ouverts.
-- Autocomplétion FR/EN/JA/ZH/KO, détection par paragraphe, recherche binaire
-  des préfixes et classement par fréquence.
-- Recherche incrémentale, remplacement avec regex/casse et recherche dans
-  les fichiers Markdown du dossier de travail.
-- Export HTML autonome interne. Pandoc ajoute HTML/EPUB et l'import org/rst ;
-  PDF nécessite aussi XeLaTeX. Aspell permet de lister les mots inconnus.
-
-Les dictionnaires embarqués contiennent **225 615 entrées** : FR 49 418,
-EN 48 635, JA 33 151, ZH 45 567, KO 48 844. Ils proviennent de
-[FrequencyWords, Hermit Dave](https://github.com/hermitdave/FrequencyWords),
-corpus OpenSubtitles 2018, avec un complément de vocabulaire original.
-Les données adaptées sont sous **CC BY-SA 4.0**, le code reste sous MIT.
-La provenance, la révision figée, les licences et les checksums sont livrés
-avec les dictionnaires dans `src/gunterdown/data/dicts/`.
-
-Un **popup près du curseur** propose au plus cinq mots, classés par fréquence :
-à partir de 3 lettres latines, de 2 caractères japonais/coréens ou d'un caractère
-chinois. En mode automatique, les préfixes latins courts peuvent proposer
-FR et EN avec le code de langue affiché. Le japonais et le chinois fonctionnent
-également à l'intérieur d'une phrase sans espaces. `↑` / `↓` ou `Shift+Tab` change la sélection,
-`Tab` valide et `Échap` ferme le popup. `Entrée` continue à insérer une ligne.
-La complétion conserve les majuscules et remplace le mot entier si le curseur
-est au milieu. Une seule annulation suffit pour revenir au texte initial.
-
-En FR/EN, des corrections de frappe sont aussi proposées (marquées `↺`) :
-lettre oubliée, répétée, remplacée, inversion ou accent manquant. Par exemple,
-`bonjoru` → `bonjour`. Les mots déjà connus ne sont pas corrigés. Ces listes
-issues de sous-titres contiennent aussi des noms et des formes familières :
-la correction reste une aide lexicale, sans analyse grammaticale. JA/ZH/KO
-bénéficient de la complétion par préfixe, sans correction approximative.
-Tout fonctionne **hors ligne**, sans transmission du texte saisi.
-
-Pour récupérer à nouveau les sources à la même révision :
-`python3 scripts/update-dicts.py` (réseau nécessaire seulement pour cette
-commande de maintenance). `--source-dir DOSSIER` réutilise les fichiers bruts
-en local. `scripts/import-dict.py` accepte aussi un JSON local avec sa notice
-de licence, et `GUNTERDOWN_DICT_PATH` permet de changer de répertoire.
-
-Les fenêtres scindées, onglets visuels et sélection rectangulaire ne sont pas
-implémentés. L'aperçu F6 génère un HTML à ouvrir dans un navigateur et se met à
-jour sur un nouvel appui sur F6. Les menus, les invites, les messages courants et le manuel intégré sont
-proposés en français, anglais, japonais, chinois simplifié et coréen. Les
-messages techniques provenant du système ou des outils externes restent dans
-leur langue d'origine. Les clusters emoji complexes ne bénéficient
-pas d'une segmentation en graphèmes ; la largeur CJK et les accents combinés
-ordinaires sont pris en compte.
-
-## Exécutable gunterdown
-
-`./gunterdown article.md` lance le programme depuis ce dépôt.
-Pour obtenir un fichier unique transportable :
-
-```sh
-make build
-./dist/gunterdown article.md
-```
-
-Vous pouvez copier `dist/gunterdown` où vous le souhaitez : il embarque le
-code, les lexiques et le manuel. Python 3.9+ avec `curses` doit être installé
-sur la machine ; l'interpréteur Python n'est pas embarqué. Le fichier est une
-archive Python exécutable, compatible Linux, macOS, BSD et WSL.
-
-`./install.sh` installe la commande `gunterdown` dans `~/.local/bin`.
-Le paquet Python et le wheel s'appellent également `gunterdown`. Le module Python est `gunterdown`. La configuration se trouve dans
-`~/.config/gunterdown/` ; les variables d’environnement utilisent `GUNTERDOWN_*`.
-
-## Installer et construire
+Un autre préfixe peut être choisi :
 
 ```sh
 ./install.sh /chemin/vers/un/prefixe
-# Par défaut : ~/.local (ajouter ~/.local/bin au PATH si nécessaire)
-./install.sh
+```
 
-make build                         # wheel et source dans dist/, hors ligne
+Pour désinstaller l’installation par défaut :
+
+```sh
+~/.local/share/gunterdown/uninstall.sh ~/.local
+```
+
+Pour un préfixe personnalisé, utilisez son script
+`<prefixe>/share/gunterdown/uninstall.sh <prefixe>`.
+La désinstallation demande confirmation et conserve la configuration utilisateur.
+
+### Construire une distribution
+
+```sh
+make build
+./dist/gunterdown mon_article.md
+
+# Installer le wheel produit
 python3 -m pip install dist/gunterdown-0.7.0-py3-none-any.whl
-make build-deb                     # nécessite dpkg-deb
+
+# Construire un paquet Debian (nécessite dpkg-deb)
+make build-deb
 ```
 
-L'installation par script est isolée dans `<prefixe>/share/gunterdown` et refuse
-une installation déjà présente. Pour la supprimer :
+`make build` fonctionne hors ligne et produit une archive Python exécutable,
+un wheel et une archive source dans `dist/`. Le fichier `dist/gunterdown`
+embarque le code, les dictionnaires et le manuel ; la machine qui l’exécute
+reste tenue de disposer de Python 3.9+ et de `curses`.
 
-```sh
-<prefixe>/share/gunterdown/uninstall.sh <prefixe>
-```
+L’installation avec `python3 -m pip install .` est aussi possible et utilise
+setuptools pour construire le paquet. Ces commandes ne publient rien sur
+PyPI, AUR ou Homebrew.
 
-Le script demande confirmation et conserve la configuration utilisateur.
-L'installation standard `pip install .` utilise setuptools pour la construction.
-Aucune publication PyPI, AUR ou Homebrew n'est effectuée par ces commandes.
+### Outils facultatifs
 
-## Langues de l'interface et de rédaction
-
-**Alt+U** ouvre le choix de langue de l'interface (aussi accessible dans
-`Outils > Langue de l’interface` et dans les préférences). Le choix est appliqué
-immédiatement et sauvegardé : Français, English, 日本語, 简体中文, 한국어.
-**Alt+L** choisit séparément la langue d'autocomplétion ou le mode automatique.
-
-```sh
-./dist/gunterdown --ui-lang en --lang en article.md
-./dist/gunterdown --ui-lang ja --lang ja article.md
-./dist/gunterdown --ui-lang ko --lang ko article.md
-./dist/gunterdown --ui-lang zh --lang zh article.md
-# Menus français, complétion japonaise :
-./dist/gunterdown --ui-lang fr --lang ja article.md
-```
-
-`--ui-lang` choisit l'interface ; `--lang` choisit la complétion. L'interface
-se configure aussi avec `ui.language` dans `config.json` (fr/en/ja/zh/ko).
-Le manuel F1 est disponible dans chaque langue. La largeur des menus et des
-invites est calculée en cellules de terminal, y compris pour les textes CJK.
-
-Pour JA/ZH/KO, saisissez les caractères natifs avec votre méthode de saisie
-système. Gunterdown complète le texte Unicode déjà saisi ; il n'effectue pas
-de conversion romaji/pinyin/clavier latin vers des caractères asiatiques.
-La détection Han seul est ambiguë entre JA et ZH : Alt+L permet de la forcer.
-
-## Configuration
-
-Le fichier `~/.config/gunterdown/config.json` est créé à la première sortie normale.
-`GUNTERDOWN_HOME` permet d'isoler toute la configuration, les logs et la récupération.
-Exemple :
-
-```json
-{
-  "ui": {"theme": "dark", "language": "fr", "tree_width": 30,
-         "show_line_numbers": true, "tab_size": 4},
-  "editor": {"soft_wrap": true, "default_lang": "fr",
-             "autocompletion": true, "autocompletion_threshold": 3,
-             "auto_save_interval": 0},
-  "template": {"auto_insert": "ask", "path": "", "author": "Zeima"}
-}
-```
-
-L'auto-save est désactivé par défaut. Les buffers modifiés sont copiés dans
-`<GUNTERDOWN_HOME>/recover/` toutes les 30 secondes et sur exception interceptée.
-Au prochain lancement du même fichier, la restauration est proposée. Une
-coupure avant le premier checkpoint ne peut pas être récupérée. Les snapshots
-sont supprimés après sauvegarde ou abandon explicite, et après 30 jours.
-
-`--lang` prime sur `GUNTERDOWN_LANG` au démarrage ; `Alt+L` change le choix pendant
-la session. `editor.default_lang` sert de repli pour les paragraphes ambigus.
-`GUNTERDOWN_NO_COLOR=1` désactive les couleurs.
-
-`keymap.json` dans le répertoire de configuration accepte par exemple
-`{"save":"Alt+1"}`. Les conflits et les raccourcis non représentables sont
-rejetés.
-
-## Thèmes
-
-**Alt+Y** ou `Outils > Thèmes` ouvre un sélecteur avec aperçu immédiat.
-`↑` / `↓` change de thème, `Entrée` applique et sauvegarde, `Échap` restaure
-le thème initial. Le changement concerne le fond, le texte, la coloration
-Markdown, les sélections, les titres et la barre d’état.
-
-| Identifiant | Thème |
+| Outil | Fonction |
 | --- | --- |
-| `dark` | Sombre classique |
-| `light` | Clair papier |
-| `solarized` | Solarized sombre |
-| `nord` | Nord boréal |
-| `dracula` | Dracula violet |
-| `ocean` | Océan bleu |
-| `contrast` | Contraste élevé |
+| Pandoc | Export EPUB et import de fichiers org/rst, notamment. |
+| Pandoc et XeLaTeX | Export PDF. |
+| Aspell | Liste des mots inconnus en français et en anglais. |
+
+Ces outils ne sont pas installés par les scripts. L’édition, l’autocomplétion
+et l’export HTML intégré fonctionnent sans eux.
+
+## Langues et autocomplétion
+
+La langue de l’interface et celle de la rédaction se règlent séparément :
+
+```sh
+# Interface anglaise, rédaction anglaise
+./gunterdown --ui-lang en --lang en article.md
+
+# Interface française, rédaction japonaise
+./gunterdown --ui-lang fr --lang ja article.md
+
+# Désactiver certains dictionnaires
+./gunterdown --no-lang ja,zh,ko article.md
+
+# Créer un article avec un modèle
+./gunterdown --new article.md
+```
+
+En session, **Alt+U** change et enregistre la langue de l’interface ;
+**Alt+L** choisit la langue d’autocomplétion ou la détection automatique.
+La langue choisie dans le parcours de configuration sert de référence pour
+les paragraphes dont la langue est ambiguë.
+
+Les suggestions apparaissent près du curseur : jusqu’à cinq mots, classés
+par fréquence, après **3 lettres latines**, **2 caractères japonais ou coréens**,
+ou **1 caractère chinois**. **↑ / ↓** ou **Shift+Tab** change la sélection,
+**Tab** valide et **Échap** ferme la liste. **Entrée** insère une nouvelle ligne.
+
+La complétion préserve les majuscules et fonctionne aussi dans les phrases
+japonaises ou chinoises sans espaces. En français et en anglais, elle propose
+également des corrections de frappe marquées `↺`, par exemple
+`bonjoru` → `bonjour`. Cette aide lexicale n’effectue pas d’analyse grammaticale.
+Les dictionnaires issus de sous-titres contiennent aussi des noms et des
+formes familières.
+
+Pour le japonais, le chinois et le coréen, utilisez votre méthode de saisie
+système : Gunterdown complète les caractères déjà saisis. Pour un texte
+composé uniquement de caractères Han, **Alt+L** permet de lever l’ambiguïté
+entre japonais et chinois.
+
+L’autocomplétion fonctionne **hors ligne, sans transmission du texte saisi**.
+
+## Configuration et thèmes
+
+Les réglages sont conservés dans `~/.config/gunterdown/config.json`, créé
+lors de la configuration initiale ou à la première sortie normale.
+Le menu **Outils → Préférences** donne accès au parcours de configuration,
+à la langue de l’interface et aux thèmes.
+
+**Alt+Y** ouvre les thèmes avec aperçu immédiat : sombre classique, clair
+papier, Solarized sombre, Nord boréal, Dracula violet, océan bleu et contraste
+élevé. **Entrée** applique et enregistre ; **Échap** restaure le thème précédent.
 
 ```sh
 ./gunterdown --theme nord article.md
-./dist/gunterdown --theme light article.md
+./gunterdown --no-color article.md
+./gunterdown --diagnostics
 ```
 
-Les palettes s’adaptent aux terminaux 256, 16 ou 8 couleurs. `--no-color`
-permet de travailler en monochrome. Un thème personnalisé est un fichier
-`~/.config/gunterdown/themes/mon_theme.json`, ou sous `<GUNTERDOWN_HOME>/themes/` :
+Les palettes s’adaptent aux terminaux 256, 16 ou 8 couleurs. Les thèmes
+personnalisés se placent dans `~/.config/gunterdown/themes/`.
 
-```json
-{"fg": 252, "bg": 234, "accent": 81, "heading": 117,
- "selection_fg": 234, "selection_bg": 81}
-```
-
-Les indices vont de 0 à 255 (palette xterm). Les champs omis héritent du thème
-sombre. Autres champs : `code`, `link`, `comment`, `quote`, `yaml`, `gutter`,
-`header_bg`. Les fichiers valides apparaissent dans le sélecteur. Vous pouvez
-aussi les activer avec `--theme mon_theme` ou `ui.theme` dans la configuration.
-
-## Raccourcis et divergences du cahier des charges
-
-`Context/` conserve les six documents initiaux. Ils décrivent des ambitions,
-des versions futures et quelques raccourcis contradictoires. Le manuel
-[USAGE.md](USAGE.md) décrit l'application réellement livrée.
-
-| Action | Raccourci retenu |
+| Réglage | Utilité |
 | --- | --- |
-| Recherche | Ctrl+W |
-| Fermer le buffer | Alt+X |
-| Enregistrer sous | Alt+E |
-| Image | Alt+I |
-| Aide raccourcis | Alt+H |
-| Changer de buffer | Alt+B |
-| Ouvrir les menus | F2 |
-| Suggestion / focus arborescence | Tab |
+| `ui.language` | Langue de l’interface : `fr`, `en`, `ja`, `zh` ou `ko`. |
+| `editor.default_lang` | Langue de repli pour la détection automatique. |
+| `editor.auto_save_interval` | Intervalle d’enregistrement automatique ; `0` le désactive, valeur par défaut. |
+| `template.auto_insert` | Insertion du modèle : `ask`, `always` ou `never`. |
+| `template.path` | Chemin d’un modèle d’article personnalisé. |
+| `template.author` | Auteur utilisé dans les modèles. |
 
-`Ctrl+I` et Tab, `Ctrl+H` et Backspace sont les mêmes codes sur de nombreux
-terminaux. Les combinaisons Ctrl+Shift ne sont donc pas utilisées. Tab accepte
-une suggestion si elle existe, indente une sélection, sinon passe dans l'arbre.
-Dans le popup, ↑/↓ ou Shift+Tab fait défiler les suggestions ; hors popup,
-Shift+Tab désindente. En mode sans arbre,
-Tab insère des espaces lorsqu'aucune suggestion n'est disponible.
+`GUNTERDOWN_HOME` change le répertoire de configuration, des logs et de
+récupération. `GUNTERDOWN_LANG` définit la langue d’autocomplétion au démarrage ;
+`--lang` est prioritaire. `GUNTERDOWN_NO_COLOR=1` désactive les couleurs.
+Un fichier `keymap.json` dans le répertoire de configuration permet de modifier
+les raccourcis, par exemple `{"save": "Alt+1"}` ; les conflits sont rejetés.
 
-## Validation et structure
+Les documents modifiés font l’objet de copies de récupération toutes les
+30 secondes et sur exception interceptée. Au prochain lancement du même
+fichier, une restauration est proposée. Une coupure avant la première copie
+ne peut pas être récupérée. Ces copies sont supprimées après enregistrement,
+abandon explicite ou après 30 jours.
+
+## Dictionnaires et licences
+
+Les cinq dictionnaires embarqués contiennent **225 615 entrées** :
+
+| Français | Anglais | Japonais | Chinois | Coréen |
+| --- | --- | --- | --- | --- |
+| 49 418 | 48 635 | 33 151 | 45 567 | 48 844 |
+
+Ils proviennent de FrequencyWords, de Hermit Dave, corpus OpenSubtitles 2018,
+avec un complément de vocabulaire original. Leur provenance, leur révision
+figée, leurs licences et leurs sommes de contrôle sont livrées dans
+`src/gunterdown/data/dicts/`.
+
+Pour régénérer les dictionnaires depuis cette révision :
 
 ```sh
-make lint        # syntaxe 3.9, ressources, checksums et raccourcis, hors ligne
-make test        # tests unitaires et vrais parcours curses dans un PTY
-make verify      # vérifications + tests + construction des distributions
+python3 scripts/update-dicts.py
 ```
 
-`src/gunterdown/` contient les modules, les ressources installables et le manuel.
-`bin/` contient les lanceurs, `scripts/` la construction et l'import de données,
-`tests/` les tests et `.github/workflows/ci.yml` la matrice Python/Linux/macOS.
-Les vérifications locales ne remplacent pas une exécution de cette matrice CI.
-Le seuil de couverture de 80 % du cahier des charges n'est pas encore une
-condition CI ; aucun taux de couverture n'est revendiqué.
+Cette commande de maintenance nécessite le réseau ; `--source-dir DOSSIER`
+permet de réutiliser des sources locales. Pour importer vos propres données,
+consultez le [guide de contribution](CONTRIBUER.md).
+`GUNTERDOWN_DICT_PATH` permet de choisir un autre répertoire de dictionnaires.
 
-Code : MIT ; dictionnaires adaptés : CC BY-SA 4.0. Voir [LICENSE](LICENSE) et
+Le **code est sous licence MIT** ; les **dictionnaires adaptés sont sous
+CC BY-SA 4.0**. Voir [LICENSE](LICENSE) et
 [THIRD_PARTY_LICENSES](THIRD_PARTY_LICENSES).
+
+## Développement et documentation
+
+Les vérifications et les tests utilisent uniquement la bibliothèque standard Python.
+
+```sh
+make lint        # Syntaxe Python 3.9, ressources, dictionnaires et raccourcis
+make test        # Tests unitaires et parcours curses dans un pseudo-terminal
+make verify      # Vérifications, tests et construction des distributions
+```
+
+Les modules et ressources se trouvent dans `src/gunterdown/`, les lanceurs
+dans `bin/`, les outils de construction dans `scripts/` et les tests dans
+`tests/`. La CI couvre Linux/macOS et Python 3.9/3.12/3.14.
+
+- [Manuel d’utilisation](USAGE.md)
+- [Installation](INSTALL.md)
+- [Contribuer](CONTRIBUER.md)
+- [Architecture](ARCHITECTURE.md)
+- [Historique des versions](CHANGES.md)
+- [À propos](A_PROPOS.md)
+
+### Limites actuelles
+
+L’aperçu **F6** génère un fichier HTML à ouvrir dans votre navigateur ; un
+nouvel appui sur F6 le régénère. Les fenêtres scindées, les onglets visuels
+et la sélection rectangulaire ne sont pas implémentés. Les accents combinés
+ordinaires et la largeur CJK sont pris en charge ; les séquences emoji
+complexes ne bénéficient pas d’une segmentation complète en graphèmes.
+Les messages des outils externes restent dans leur langue d’origine.
+
+Le dossier `Context/` conserve les documents de conception initiaux, dont
+certaines fonctionnalités sont prospectives. Le manuel décrit le comportement
+livré. Aucun seuil de couverture des tests n’est actuellement imposé en CI.
