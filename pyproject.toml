@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gunterdown"
+version = "0.7.0"
+description = "Éditeur Markdown multilingue pour terminal, sans dépendance Python"
+readme = "README.md"
+requires-python = ">=3.9"
+license = {text = "MIT"}
+authors = [{name = "Zeima"}]
+dependencies = []
+
+[project.scripts]
+gunterdown = "gunterdown.tui:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "pytest-cov", "pexpect", "black", "isort", "flake8", "mypy", "build", "twine"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+gunterdown = ["data/dicts/*", "data/templates/*.md", "data/docs/*.md"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.black]
+line-length = 88
+
+[tool.isort]
+profile = "black"

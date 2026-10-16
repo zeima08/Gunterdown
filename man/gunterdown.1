@@ -1,0 +1,55 @@
+.TH GUNTERDOWN 1 "October 2026" "Gunterdown 0.7.0"
+.SH NAME
+gunterdown \- multilingual Markdown terminal editor
+.SH SYNOPSIS
+.B gunterdown
+[options] [file-or-directory]
+.SH DESCRIPTION
+A Python curses editor with Markdown highlighting, a file tree,
+article templates, undo/redo, search and multilingual completion.
+.SH OPTIONS
+.TP
+.B --new FILE
+Create an article using the template. Refuses an existing file.
+.TP
+.B -w, --workdir DIRECTORY
+File tree root; file paths remain relative to the launch directory.
+.TP
+.B -l, --lang LANGUAGE
+Force fr, en, ja, zh, ko, or auto detection.
+.TP
+.B --ui-lang LANGUAGE
+Interface language: fr, en, ja, zh (Simplified Chinese), ko.
+Independent of the completion language. Alt-U changes it in the editor.
+.TP
+.B --no-lang LANGUAGES
+Disable comma-separated dictionaries.
+.TP
+.B --theme NAME
+Choose dark, light, solarized, nord, dracula, ocean, contrast, or a custom theme.
+Alt-Y opens the theme preview; Enter saves, Esc restores the previous theme.
+.TP
+.B --no-color
+Disable colors.
+.TP
+.B --no-tree
+Hide the file tree.
+.TP
+.B --template FILE
+Use an alternative article template.
+.TP
+.B --diagnostics
+Print and save diagnostic information.
+.TP
+.B -V, --version
+Show version and available dictionaries.
+.SH KEYS
+Ctrl-S saves; Ctrl-X quits; Ctrl-U undoes; Ctrl-Y redoes;
+F1 opens help; F2 opens menus; F9 toggles the tree.
+Alt-B switches buffers; Alt-T inserts an article template.
+.SH FILES
+~/.config/gunterdown/config.json, keymap.json, recover/
+.SH ENVIRONMENT
+GUNTERDOWN_HOME, GUNTERDOWN_DICT_PATH, GUNTERDOWN_LANG, GUNTERDOWN_NO_COLOR.
+.SH AUTHOR
+Zeima. MIT license. Bundled demonstration lexicons are original data.

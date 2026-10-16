@@ -1,0 +1,18 @@
+name: checks
+on: [push, pull_request]
+jobs:
+  test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python: ['3.9', '3.12', '3.14']
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - run: make verify
+      - run: python -m venv /tmp/gunterdown-verify
+      - run: /tmp/gunterdown-verify/bin/python -m pip install --no-deps dist/gunterdown-0.7.0-py3-none-any.whl
+      - run: /tmp/gunterdown-verify/bin/gunterdown --version

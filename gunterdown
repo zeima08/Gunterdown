@@ -1,0 +1,3 @@
+#!/bin/sh
+# Run Gunterdown from this source directory.
+exec python3 "$(dirname "$0")/bin/gunterdown.py" "$@"

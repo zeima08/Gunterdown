@@ -1,0 +1,26 @@
+Gunterdown dictionary data
+=========================
+The bundled fr/en/ja/zh/ko lexicons are adapted from FrequencyWords by Hermit
+Dave, derived from OpenSubtitles 2018 via OPUS.
+Source repository: https://github.com/hermitdave/FrequencyWords
+Pinned revision: 525f9b560de45753a5ea01069454e72e9aa541c6
+
+The content is licensed Creative Commons Attribution-ShareAlike 4.0
+International (CC BY-SA 4.0), separately from Gunterdown's MIT-licensed code.
+License: https://creativecommons.org/licenses/by-sa/4.0/
+Full license text: src/gunterdown/data/dicts/CC-BY-SA-4.0.txt
+
+Adaptations by Gunterdown: token filtering, case folding, apostrophe
+normalization, duplicate merging, original MIT vocabulary additions from
+SUPPLEMENT.json, and conversion to compressed JSON.
+The adapted lexicons are distributed under CC BY-SA 4.0. Per-language source
+URLs, source checksums, counts and the pinned revision are recorded in
+src/gunterdown/data/dicts/SOURCES.json and <language>.LICENSE.txt. Compressed data
+checksums are recorded in SHA256SUMS. No endorsement by the source is implied.
+
+No Wiktextract, JMDict, CC-CEDICT, KAIST or Noto font data is bundled.
+Frequency lists come from subtitles and may contain colloquial forms, names
+and transcription errors. They are not normative spelling dictionaries.
+
+Python and curses are system dependencies. Pandoc, XeLaTeX, aspell and lpr
+are optional external programs; none is bundled.

@@ -1,0 +1,39 @@
+{
+  "project": "FrequencyWords",
+  "author": "Hermit Dave",
+  "corpus": "OpenSubtitles 2018 via OPUS",
+  "revision": "525f9b560de45753a5ea01069454e72e9aa541c6",
+  "license": "CC-BY-SA-4.0",
+  "languages": {
+    "fr": {
+      "url": "https://raw.githubusercontent.com/hermitdave/FrequencyWords/525f9b560de45753a5ea01069454e72e9aa541c6/content/2018/fr/fr_50k.txt",
+      "source_sha256": "f81f7c570b6433764da99aa30f4dfb08d81c5926301377b709af23a13b1f9596",
+      "entries": 49418,
+      "supplement_added": 5
+    },
+    "en": {
+      "url": "https://raw.githubusercontent.com/hermitdave/FrequencyWords/525f9b560de45753a5ea01069454e72e9aa541c6/content/2018/en/en_50k.txt",
+      "source_sha256": "5351ff405b1126ef555791dd4d9798a48e3e9a501a9fc481a9da957752cfb458",
+      "entries": 48635,
+      "supplement_added": 3
+    },
+    "ja": {
+      "url": "https://raw.githubusercontent.com/hermitdave/FrequencyWords/525f9b560de45753a5ea01069454e72e9aa541c6/content/2018/ja/ja_full.txt",
+      "source_sha256": "581dd106a134ff9f2706e23cde9fe95cd24d96ead6357cd3bd3bba9e166a764e",
+      "entries": 33151,
+      "supplement_added": 28
+    },
+    "zh": {
+      "url": "https://raw.githubusercontent.com/hermitdave/FrequencyWords/525f9b560de45753a5ea01069454e72e9aa541c6/content/2018/zh_cn/zh_cn_50k.txt",
+      "source_sha256": "25599e00347b893e55c3058a748819b3fe19403291cd12f7c03af128e7f3fe45",
+      "entries": 45567,
+      "supplement_added": 10
+    },
+    "ko": {
+      "url": "https://raw.githubusercontent.com/hermitdave/FrequencyWords/525f9b560de45753a5ea01069454e72e9aa541c6/content/2018/ko/ko_50k.txt",
+      "source_sha256": "8d00401b6728c8d6feeaa5455583c1a33408dd020aae4aa55609b25004d1d99d",
+      "entries": 48844,
+      "supplement_added": 14
+    }
+  }
+}

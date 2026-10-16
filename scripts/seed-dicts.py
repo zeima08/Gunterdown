@@ -1,0 +1,26 @@
+#!/usr/bin/env python3
+"""Generate original demonstration lexicons; no upstream corpus is bundled."""
+import gzip
+import hashlib
+import json
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1] / "src/gunterdown/data/dicts"
+WORDS = {
+    "fr": "bonjour bonsoir bonheur bonne bonnes bienvenue article articles auteur autrice aujourd'hui apprendre apprentissage application applications arbre arborescence architecture attention automatique autocomplétion avec beaucoup besoin bibliothèque caractère caractères chapitre chercher commentaire comprendre conclusion contexte continuer contribution créer développement dictionnaire document documentation données écrire écriture éditeur édition exemple exporter fichier fichiers français fonction génération histoire introduction japonais langue langues lecture logiciel markdown merci monde nouveau nouvelle ordinateur paragraphe partager phrase projet recherche référence résumé sauvegarde section seulement suggestion tableau technique terminal texte titre toujours travail utilisateur version véritable", 
+    "en": "hello help helpful welcome world word words write writer writing article articles author application applications automatic autocomplete architecture attention beautiful because become before begin beginning between book buffer character characters chapter check code comment complete completion conclusion context continue create development dictionary document documentation editor editing example export file files first function generation heading history however import introduction language languages learning library markdown memory morning navigation paragraph people project python reading reference replace research save search section simple software something suggestion table technical terminal text thank thanks there these thing think title today together tomorrow translation understand unicode useful user version very which window working writing yourself",
+    "ja": "こんにちは こんばんは ありがとう ありがとうございます おはよう おはようございます さようなら すみません はじめまして よろしく よろしくお願いします こんにちは世界 日本 日本語 日本人 東京 京都 大阪 学校 学生 学習 先生 世界 文章 記事 著者 編集 編集者 保存 検索 言語 辞書 文字 文字列 開発 開発者 文書 図書館 読書 書籍 本日 明日 昨日 自動 自動補完 変換 入力 出力 情報 技術 科学 コンピューター プログラム プログラミング ソフトウェア テキスト ターミナル マークダウン インターネット ファイル ディレクトリ テンプレート",
+    "zh": "你好 你好吗 你好世界 谢谢 谢谢你 再见 早上好 晚上好 欢迎 欢迎使用 中文 中国 中国人 汉字 汉语 语言 字典 词典 文字 字符 字符串 文章 作者 编辑 编辑器 保存 搜索 替换 文件 文件夹 目录 文档 文本 标题 段落 内容 简介 结论 参考 学习 学生 学校 老师 世界 今天 明天 昨天 电脑 计算机 程序 程序员 软件 开发 开发者 技术 科学 信息 自动 自动完成 输入 输出 终端 模板 版本 用户 项目",
+    "ko": "안녕 안녕하세요 안녕히가세요 감사합니다 감사해요 고맙습니다 반갑습니다 환영합니다 한국 한국어 한국인 서울 세계 문서 문장 문자 문자열 글쓰기 글 작성 작성자 편집 편집기 저장 검색 바꾸기 파일 폴더 디렉터리 제목 단락 내용 소개 결론 참고 언어 사전 학습 학생 학교 선생님 오늘 내일 어제 컴퓨터 프로그램 프로그래밍 소프트웨어 개발 개발자 기술 과학 정보 자동 자동완성 입력 출력 터미널 템플릿 버전 사용자 프로젝트 도서관 읽기 쓰기",
+}
+ROOT.mkdir(parents=True, exist_ok=True)
+checksums = []
+for lang, words in WORDS.items():
+    unique = list(dict.fromkeys(words.split()))
+    entries = sorted([{"word": word, "freq": len(unique) - i, "pos": []}
+                      for i, word in enumerate(unique)], key=lambda e: e["word"])
+    payload = gzip.compress(json.dumps(entries, ensure_ascii=False).encode(), mtime=0)
+    target = ROOT / (lang + ".json.gz")
+    target.write_bytes(payload)
+    checksums.append(hashlib.sha256(payload).hexdigest() + "  " + target.name)
+(ROOT / "SHA256SUMS").write_text("\n".join(checksums) + "\n")
